@@ -55,12 +55,20 @@ class Card {
     return this.suit === '♣' || this.suit === '♠' ? 'black' : 'red';
   }
 
-  getHTML() {
+  getSuit() {
+    return this.suit;
+  }
+
+  getElement() {
     const cardDiv = document.createElement('div');
     cardDiv.innerText = this.suit;
     cardDiv.classList.add('card', this.color);
     cardDiv.dataset.value = `${this.value} ${this.suit}`;
     return cardDiv;
+  }
+
+  getHTML() {
+    return this.getElement().outerHTML;
   }
 }
 
