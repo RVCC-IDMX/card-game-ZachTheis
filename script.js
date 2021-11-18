@@ -12,11 +12,11 @@ const spadesButton = select('#spades-button');
 
 let deck, score;
 
-listen(newGameButton, 'click', startGame());
-listen(diamondsButton,'click', playRound());
-listen(heartsButton, 'click', playRound());
-listen(clubsButton, 'click', playRound());
-listen(spadesButton, 'click', playRound());
+listen(newGameButton, 'click', startGame);
+listen(diamondsButton,'click', () => {playRound('♦')});
+listen(heartsButton, 'click',  () => {playRound('♥')});
+listen(clubsButton, 'click',   () => {playRound('♣')});
+listen(spadesButton, 'click',  () => {playRound('♠')});
 
 function startGame() {
   console.log("This is the startGame function")
@@ -33,7 +33,7 @@ function startGame() {
 function playRound(prediction) {
   console.log(prediction);
   console.log("This is the playRound function");
-  if(deck.numberofCards > 0) {
+  if(deck.numberOfCards > 0) {
     const topCard = flipCard();
     if (isWinner(topCard, prediction)) {
       score += 4;
@@ -55,13 +55,14 @@ function cleanUp() {
 };
 
 function updateDeckCount() {
-  deckElement.innerText = deck.numberofCards;
+  deckElement.innerText = deck.numberOfCards;
 };
 
 function flipCard() {
   const card = deck.pop();
 
-  cardSlotElement.appendChild(card.getHTML());
+  //cardSlotElement.appendChild(card.getHTML());
+  cardSlotElement.innerHTML = card.getHTML();
   updateDeckCount();
   return card;
 };
