@@ -1,6 +1,6 @@
 import { util } from 'prettier';
 import Deck from './deck.js';
-import { select, listen } from utils.js;
+import { select, listen } from './utils.js';
 
 const cardSlotElement = select('.card-slot');
 const deckElement = select('.deck');
@@ -25,6 +25,7 @@ function startGame() {
   deck = new Deck;
   deck.shuffle();
 
+  textElement.innerText = 'Pick a suit';
 };
 
 function playRound(prediction) {

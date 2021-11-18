@@ -3,20 +3,20 @@
 }
 
 .header {
-  outline: 1px solid black;
-  justify-self: center;
+  grid-column: span 4;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 body {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(4, 4rem);
-  grid-template-rows: 3rem 6rem 2rem 1rem 1rem;
+  grid-template-columns: repeat(4, 5rem);
+  grid-template-rows: 8rem 8rem 4rem 3rem 2rem;
   gap: .5rem;
   justify-content: center;
   padding-top: 1rem;
@@ -83,12 +83,14 @@ body {
 }
 
 .text {
-  grid-column: span 2;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
 }
 
 .button {
@@ -96,6 +98,7 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  border-radius: .5rem;
 }
 
 #new-game-button {
@@ -104,6 +107,7 @@ body {
   grid-row-start: 4;
   grid-row-end: 5;
   background-color: limegreen;
+  height: 66%;
 }
 
 .suit {

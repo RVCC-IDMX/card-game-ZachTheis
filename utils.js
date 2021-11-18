@@ -6,11 +6,11 @@ const log = (content) => {
   console.log(content);
 };
 
-const select = (selector, scope) => {
+export const select = (selector, scope) => {
   return (scope || document).querySelector(selector);
 };
 
-const listen = (target, event, callback, capture = false) => {
+export const listen = (target, event, callback, capture = false) => {
   target.addEventListener(event, callback, !!capture);
 };
 
