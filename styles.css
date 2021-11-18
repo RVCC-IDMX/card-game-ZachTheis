@@ -1,0 +1,120 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+.header {
+  outline: 1px solid black;
+  justify-self: center;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 4rem);
+  grid-template-rows: 3rem 6rem 2rem 1rem 1rem;
+  gap: .5rem;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.deck {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-radius: .5rem;
+  color: white;
+  background-color: green;
+  user-select: none;
+}
+
+.card-slot {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.card.red {
+  color: red;
+}
+
+.card.black {
+  color: black;
+}
+
+.card::before, .card::after {
+  position: absolute;
+  content: attr(data-value);
+  font-size: 1rem;
+  letter-spacing: 5px;
+}
+
+.card::before {
+  top: .5rem;
+  left: .5rem;
+}
+
+.card::after {
+  bottom: .5rem;
+  right: .5rem;
+  transform: rotate(180deg);
+}
+
+.text {
+  grid-column: span 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#new-game-button {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  background-color: limegreen;
+}
+
+.suit {
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#diamonds-button, #hearts-button {
+  background-color: red;
+}
+
+#clubs-button, #spades-button {
+  background-color: black;
+}
