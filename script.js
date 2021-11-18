@@ -1,4 +1,3 @@
-import { util } from 'prettier';
 import Deck from './deck.js';
 import { select, listen } from './utils.js';
 
@@ -14,21 +13,26 @@ const spadesButton = select('#spades-button');
 let deck, score;
 
 listen(newGameButton, 'click', startGame());
-listen(diamondsButton,'click', playRound('♦'));
-listen(heartsButton, 'click', playRound('♥'));
-listen(clubsButton, 'click', playRound('♣'));
-listen(spadesButton, 'click', playRound('♠'));
+listen(diamondsButton,'click', playRound());
+listen(heartsButton, 'click', playRound());
+listen(clubsButton, 'click', playRound());
+listen(spadesButton, 'click', playRound());
 
 function startGame() {
-  cleanUp();
+  console.log("This is the startGame function")
 
   deck = new Deck;
   deck.shuffle();
+
+  cleanUp();
+  console.log(deck.cards[0]);
 
   textElement.innerText = 'Pick a suit';
 };
 
 function playRound(prediction) {
+  console.log(prediction);
+  console.log("This is the playRound function");
   if(deck.numberofCards > 0) {
     const topCard = flipCard();
     if (isWinner(topCard, prediction)) {
@@ -63,5 +67,8 @@ function flipCard() {
 };
 
 function isWinner(topCard, prediction) {
-  return topCard.suit === prediction;
+  return topCard.getSuit() === prediction;
 };
+
+
+startGame();

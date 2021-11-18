@@ -1,8 +1,25 @@
-const SUITS = ['♠', '♥', '♣', '♦', ]
-const VALUES = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', ]
+/* eslint-disable no-undef */
+/* eslint-disable max-classes-per-file */
+const SUITS = ['♠', '♣', '♥', '♦'];
+const VALUES = [
+  'A',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  'J',
+  'Q',
+  'K',
+];
 
 export default class Deck {
-  constructor(cards) {
+  // eslint-disable-next-line no-use-before-define
+  constructor(cards = freshDeck()) {
     this.cards = cards;
   }
 
@@ -19,9 +36,9 @@ export default class Deck {
   }
 
   shuffle() {
-    for (let i = this.numberofCards -1; i > 0; i--) {
+    for (let i = this.numberOfCards - 1; i > 0; i -= 1) {
       const newIndex = Math.floor(Math.random() * (i + 1));
-      const oldValue =this.cards[newIndex];
+      const oldValue = this.cards[newIndex];
       this.cards[newIndex] = this.cards[i];
       this.cards[i] = oldValue;
     }
@@ -35,10 +52,10 @@ class Card {
   }
 
   get color() {
-    return this.suit === '♠' || this.suit === '♣' ? 'black' : 'red';
+    return this.suit === '♣' || this.suit === '♠' ? 'black' : 'red';
   }
 
-  get suit() {
+  getSuit() {
     return this.suit;
   }
 
@@ -46,15 +63,11 @@ class Card {
     const cardDiv = document.createElement('div');
     cardDiv.innerText = this.suit;
     cardDiv.classList.add('card', this.color);
-    cardDiv.dataset.value = `${this.value}${this.suit}`;
+    cardDiv.dataset.value = `${this.value} ${this.suit}`;
     return cardDiv;
   }
 }
 
 function freshDeck() {
-  return SUITS.flatMap(suit => {
-    return VALUES.map(value => {
-      return new Card(suit, value)
-    });
-  });
+  return SUITS.flatMap((suit) => VALUES.map((value) => new Card(suit, value)));
 }
