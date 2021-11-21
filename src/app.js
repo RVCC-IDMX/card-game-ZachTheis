@@ -10,7 +10,7 @@ const heartsButton = select('#hearts-button');
 const clubsButton = select('#clubs-button');
 const spadesButton = select('#spades-button');
 
-let deck, score;
+let deck, score, nextCard;
 
 listen(newGameButton, 'click', startGame);
 listen(diamondsButton,'click', () => {playRound('♦')});
@@ -21,13 +21,16 @@ listen(spadesButton, 'click', () => {playRound('♠')});
 function startGame() {
   deck = new Deck;
   deck.shuffle();
+  console.log(`First card: ${deck.cards[0].getSuit()}`);
 
   cleanUp();
 
+  // console.log(`Game started. First card: ${nextCard.getSuit()}`);
   textElement.innerText = 'Pick a suit';
 };
 
 function playRound(prediction) {
+  console.log(`clicked ${prediction}`);
   if(deck.numberOfCards > 0) {
     const topCard = flipCard();
     if (isWinner(topCard, prediction)) {
@@ -37,6 +40,7 @@ function playRound(prediction) {
       score--;
       textElement.innerText = `You Lose. Score: ${score}`;
     }
+    console.log(`Next card: ${deck.cards[0].getSuit()}`);
   } else {
     textElement.innerText = `You're out of cards. Final Score: ${score}`
   }
